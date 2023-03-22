@@ -1,0 +1,3 @@
+x e y en el código ensamblador. La variable x se ha asignado en la sección .data como x: .long 5, lo que significa que es una variable global inicializada con el valor 5. La variable y se ha asignado en la sección .data como y: .double 2.5, lo que significa que es una variable global inicializada con el valor 2.5 en formato de coma flotante de doble precisión.
+
+En resumen, para generar el código ensamblador de un programa en C++ usando g++ en Ubuntu, se puede usar la opción "-S" en el compilador, lo que generará un archivo en formato ensamblador. Los nombres de las funciones se decoran según la convención de nombres C++ ABI, que agrega información sobre los tipos y argumentos de la función. Las variables se asignan en el código ensamblador según su tipo y valor.
