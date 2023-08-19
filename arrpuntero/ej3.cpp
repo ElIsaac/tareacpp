@@ -1,3 +1,5 @@
+//isaac ramirez velez y andrez almanza quezada
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -17,6 +19,7 @@ int main()
     // Crear un arreglo bidimensional utilizando asignación dinámica de memoria
     // arreglo de punteros
     int **arreglo = new int *[N]; // Crear un puntero a puntero para las filas
+    int **transpuesta = new int *[M];
 
     // Asignar memoria para cada fila individual
     // asignar un puntero a arreglo entero en cada fila*
@@ -24,7 +27,10 @@ int main()
     {
         arreglo[i] = new int[M]; // Asignar memoria para la fila 'i'
     }
-
+    for (int i = 0; i < M; ++i)
+    {
+        transpuesta[i] = new int[N];
+    }
     // Inicializar la semilla para generar números aleatorios
     srand(time(NULL));
 
@@ -33,7 +39,15 @@ int main()
     {
         for (int j = 0; j < M; ++j)
         {
-            arreglo[i][j] = 1 + rand() % 50; // Generar número aleatorio en el rango [10, 50]
+            arreglo[i][j] = 10 + rand() % 50; // Generar número aleatorio en el rango [10, 50]
+        }
+    }
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < M; ++j)
+        {
+            transpuesta[j][i] = arreglo[i][j]; // Generar número aleatorio en el rango [10, 50]
         }
     }
 
@@ -68,8 +82,28 @@ int main()
         cout << endl;
     }
 
-    cout << "Ingrese un numero a buscar en la matriz 2: ";
-    cin >> busqueda;
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < M; ++j)
+        {
+            transpuesta[j][i] = resultado[i][j];
+        }
+    }
+    cout << "la matriz transpuesta es: " << endl;
+    for (int i = 0; i < M; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            cout << *(*(transpuesta + i) + j) << " ";
+        }
+        cout << endl;
+    }
+
+    do {
+        cout << "Ingrese el número a buscar en la matriz 2 (entre "<<1*multi <<" y "<<50*multi <<"):  ";
+        cin >> busqueda;
+    } while (busqueda < 1*multi || busqueda > 50*multi);
+
     int acumulador = 0;
 
     for (int i = 0; i < N; ++i)
@@ -82,18 +116,20 @@ int main()
                 acumulador++;
                 posiciones.push_back(&resultado[i][j]);
             }
-            
         }
     }
 
-    if (acumulador > 0) {
+    if (acumulador > 0)
+    {
         cout << "el numero: " << busqueda << " SI se encontro" << endl;
-        cout << " la(s) posiciones de mempria son: " <<endl;
-        for (int i = 0; i < posiciones.size(); i++) {
+        cout << " la(s) posiciones de memoria son: " << endl;
+        for (int i = 0; i < posiciones.size(); i++)
+        {
             cout << posiciones[i] << endl;
         }
     }
-    else {
+    else
+    {
         cout << "el numero" << busqueda << " NO se encontro" << endl;
     }
 
